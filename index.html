@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nyy</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, target-densitydpi=device-dpi" />
+    <link href="./js/pcplayer/theme/default/layer.css" rel="stylesheet">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/pcplayer/layer.js"></script>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" /> -->
+    
+    
+
+    <style>
+        html,body{
+            height: 100%;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #showoonebanner{
+            width: 100%;
+            height: 100%;
+            background: url('./images/banner.png') no-repeat center/cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+        #showoonebanner .leftlogo{
+            position: absolute;
+            left: 40px;
+            top: 40px;
+            /* width: 174px; */
+            height: 26px;
+        }
+        #showoonebanner .rightname{
+            position: absolute;
+            right: 40px;
+            top: 40px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 18px;
+            color: #212121;
+            font-family: SourceHanSansCN;
+            letter-spacing: 1px;
+        }
+        #showoonebanner .bigimgicon{
+            position: absolute;
+            z-index: 2;
+        }
+        #showoonebanner .bigimgicon .bigimgicon_a{
+            display: block;
+            position: relative;
+            cursor: pointer;
+        }
+        #showoonebanner .bigimgicon .bigimgicon_a .bigimgicon_dian{
+            position: relative;
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border: 7px solid #001eb4;
+            border-radius: 50%;
+            animation: bordershow 3s infinite;
+        }
+        #showoonebanner .bigimgicon .bigimgicon_a .bigimgicon_dian::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(0, 30, 180, 0.2);
+            animation: boderM 3s .75s infinite;
+        }
+        #showoonebanner .bigimgicon .bigimgicon_a .bigimgicon_dian::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(0, 30, 180, 0.2);
+            animation: boderM 3s infinite;
+        }
+
+        #showoonebanner .bigimgicon .bigimgicon_a .bigimgicon_href{
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            width: 0;
+            height: 40px;
+            opacity: 0;
+            text-indent: 20px;
+            line-height:40px;
+            font-family: PingFangSC-Semibold;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 0.88px;
+            font-weight: 600;
+            background: url('./images/bigimgbg.svg') no-repeat center/cover;
+            overflow: hidden;
+        }
+
+        #showoonebanner .bigimgicon .bigimgicon_a .bigimgicon_href .iconjiantou {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-top: 15px; 
+            margin-left: 10px;
+            background: url('./images/bigimgarrow.svg') no-repeat center/cover;
+        }
+
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .bigimgicon_href{
+            opacity: 1;
+            transition: 0.3s;
+        }
+
+        /* 1 应急保障(学校、重要活动)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .yjbz{
+            width: 245px;
+        }
+
+        /* 2 基建临时用电(桩机、隧道等)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .jjlsyd{
+            width: 260px;
+        }
+
+        /* 3 充电站(光储充一体化)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .cdz{
+            width: 213px;
+        }
+
+        /* 4 应急备用(银行、医院、学校等) */
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .yjby{
+            width: 275px;
+        }
+
+        /* 5 民生保障(山区、海岛离网供电)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .msbz{
+            width: 275px;
+        }
+
+        /* 6 柴储一体化智能微网电站*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .ccyth{
+            width: 232px;
+        }
+
+        /* 7 移动应用(带车底移动电源车)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .ydyy{
+            width: 260px;
+        }
+
+        /* 8 电网(储能调峰，用户侧响应)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .dy{
+            width: 260px;
+        }
+
+        /* 9 智能储能电站*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .zncndz{
+            width: 195px;
+        }
+
+        /* 10 新能源(离网或者并网调节)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .xny{
+            width: 223px;
+        }
+
+        /* 11 采矿工业(油田、矿井等)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .ckgy{
+            width: 230px;
+        }
+
+        /* 12 发电厂(储能调频)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .fdc{
+            width: 190px;
+        }
+
+        /* 13 柴油、天然气发电机组(增容，节能降耗)*/
+        #showoonebanner .bigimgicon .bigimgicon_a:hover .cytyq{
+            width: 215px;
+        }
+
+        .layerdiv{
+            position: absolute;
+            z-index: 5;
+            background: inherit;
+            overflow: hidden;
+            box-shadow: 0px 0px 24px -1px rgba(0,22,66,0.3);
+            border-radius: 4px;
+            display:none;
+            width: 50%;
+            height: 40%;
+        }
+        .layerdiv::before {
+            content: '';
+            position: absolute;
+            top:0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: inherit;
+            background-attachment: fixed;
+            filter: blur(4px);
+            -webkit-filter: blur(4px);
+        }
+        .layerdiv::after {
+            content: "";
+            position: absolute;
+            top:0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        .layerdiv .layerimg{
+            position: absolute;
+            left: 30px;
+            width: calc( 100% - 60px);
+            top: 30px;
+            z-index: 6;
+        }
+        .layerdiv .layerclose{
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 7;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+        .layerdiv .videobtn{
+            position: absolute;
+            left: 35px;
+            top: 100px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .layerdiv .videobtnneds{
+            position: absolute;
+            right: 35px;
+            bottom: 18%;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .audiodiv{
+            display: none;
+        }
+        .imgarr{
+            position: absolute;
+            display: none;
+            width: 5%;
+        }
+
+
+
+
+
+
+        @keyframes boderM {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0
+            }
+            20% {
+                opacity: 1
+            }
+            75% {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0
+            }
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes bordershow {
+            50% {
+                box-shadow: 0px 0px 10px 0 #001eb4;
+            }
+        }
+
+
+        .layui-layer.layui-layer-page .layui-layer-setwin{
+            width: 30px;
+            height: 30px;
+            right: -40px;
+            top: -30px;
+        }
+        .layui-layer.layui-layer-page .layui-layer-setwin a.layui-layer-close{
+            background: url(./images/index_close.svg) no-repeat center/cover;
+        }
+
+        .layui-layer-content{
+            overflow: hidden !important;
+        }
+        .layui-layer-content video{
+            width: 720px;
+            height: 480px;
+            overflow: hidden;
+        }
+
+
+    </style>
+
+
+</head>
+
+<body style="height: 100%;">
+
+    <div id="showoonebanner">
+        <img class="leftlogo" src="./images/logo.svg" alt="">
+        <div class="rightname">智能低碳供电解决方案专家</div>
+        
+        <!--1-->
+        <div class="bigimgicon" style="left: 17.5%;top: 39%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian yjbz_icon"></span>
+                <div class="bigimgicon_href yjbz" onclick="showlayer('yjbz')">
+                    <span class="bigimgicon_title">应急保障(学校、重要活动)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="left: 26%;top: 18%;" id="yjbz">
+            <img class="layerimg" src="./images/yjbz.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('yjbz')">
+            <img class="videobtn" src="./images/playvideo.svg" alt="" onclick="showvideo('yjbz')">
+        </div>
+        <!-- 弹框音频 -->
+        <audio controls loop class="audiodiv" id="audio_yjbz">
+            <source src="./audio/yjbz.mp3" type="audio/mpeg">
+        </audio>
+        <!-- 左边箭头 -->
+        <img class="imgarr" id="arr_yjbz" style="left: 21.2%;top: 33.85%;" src="./images/rightarr.svg" alt="">
+        
+        <!--2-->
+        <div class="bigimgicon" style="left: 37.5%;top: 39%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian jjlsyd_icon"></span>
+                <div class="bigimgicon_href jjlsyd" onclick="showlayer('jjlsyd')">
+                    <span class="bigimgicon_title">基建临时用电(桩机、隧道等)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="left:45.6%;top:19%;" id="jjlsyd">
+            <img class="layerimg" src="./images/jjlsyd.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt="" onclick="closelayer('jjlsyd')">
+            <img class="videobtn" src="./images/playvideo.svg" alt="" onclick="showvideo('jjlsyd')">
+        </div>
+        <!-- 左边箭头 -->
+        <img class="imgarr" id="arr_jjlsyd" style="left: 40.8%;top: 34.3%;" src="./images/rightarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_jjlsyd">
+            <source src="./audio/jjlsyd.mp3" type="audio/mpeg">
+        </audio>
+        
+        
+        <!--3-->
+        <div class="bigimgicon" style="left: 60.5%;top: 39.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian cdz_icon"></span>
+                <div class="bigimgicon_href cdz" onclick="showlayer('cdz')">
+                    <span class="bigimgicon_title">充电站(光储充一体化)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="right:47.5%;top:19%;" id="cdz">
+            <img class="layerimg" src="./images/cdz.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt="" onclick="closelayer('cdz')">
+        </div>
+        <!-- 右边箭头 -->
+        <img class="imgarr" id="arr_cdz" style="right: 42.6%;top: 34.3%;" src="./images/leftarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_cdz">
+            <source src="./audio/cdz.mp3" type="audio/mpeg">
+        </audio>
+
+        <!--4-->
+        <div class="bigimgicon" style="left: 80.5%;top: 38.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian yjby_icon"></span>
+                <div class="bigimgicon_href yjby" onclick="showlayer('yjby')">
+                    <span class="bigimgicon_title">应急备用(银行、医院、学校等)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="right:29%;top:21%;" id="yjby">
+            <img class="layerimg" src="./images/yjby.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('yjby')">
+            <img class="videobtn" src="./images/playvideo.svg" alt="" onclick="showvideo('yjby')">
+        </div>
+        <!-- 右边箭头 -->
+        <img class="imgarr" id="arr_yjby" style="right: 24%;top: 35%;" src="./images/leftarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_yjby">
+            <source src="./audio/yjby.mp3" type="audio/mpeg">
+        </audio>
+
+        <!--5-->
+        <div class="bigimgicon" style="left: 13.5%;top: 57.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian msbz_icon"></span>
+                <div class="bigimgicon_href msbz" onclick="showlayer('msbz')">
+                    <span class="bigimgicon_title">民生保障(山区、海岛离网供电)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="left: 21%;top: 38%;" id="msbz">
+            <img class="layerimg" src="./images/msbz.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('msbz')">
+        </div>
+        <!-- 左边箭头 -->
+        <img class="imgarr" id="arr_msbz" style="left: 16%;top: 52.5%;" src="./images/rightarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_msbz">
+            <source src="./audio/msbz.mp3" type="audio/mpeg">
+        </audio>
+        
+        <!--6-->
+        <div class="bigimgicon" style="left: 27.5%;top: 50%;">
+            <a href="#" class="bigimgicon_a">
+                <span class="bigimgicon_dian ccyth_icon"></span>
+                <div class="bigimgicon_href ccyth" onclick="showlayer('ndes')">
+                    <span class="bigimgicon_title">柴储一体化智能微网电站</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </a>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="width: 60%;height: 59%;left:36.5%;top:21%;" id="ndes">
+            <img class="layerimg" src="./images/ndes.svg" alt="" style="width: calc( 100% - 40px);">
+            <img class="layerclose" src="./images/index_close.svg" alt="" onclick="closelayer('ndes')">
+            <img class="videobtnneds" src="./images/playvideo.svg" alt="" onclick="showvideo('ndes')">
+        </div>
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_ndes">
+            <source src="./audio/ndes.mp3" type="audio/mpeg">
+        </audio>
+        <!-- 左边箭头 -->
+        <img class="imgarr" id="arr_ndes" style="left: 31.5%;top: 42.8%;" src="./images/rightarr.svg" alt="">
+        
+        <!--7-->
+        <div class="bigimgicon" style="left: 37%;top: 61.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian ydyy_icon"></span>
+                <div class="bigimgicon_href ydyy" onclick="showlayer('ydyy')">
+                    <span class="bigimgicon_title">移动应用(带车底移动电源车)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="left:45.5%;top:42%;" id="ydyy">
+            <img class="layerimg" src="./images/ydyy.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('ydyy')">
+            <img class="videobtn" src="./images/playvideo.svg" alt="" onclick="showvideo('ydyy')">
+        </div>
+        <!-- 左边箭头 -->
+        <img class="imgarr" id="arr_ydyy" style="left: 40.5%;top: 56.5%;" src="./images/rightarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_ydyy">
+            <source src="./audio/ydyy.mp3" type="audio/mpeg">
+        </audio>
+        
+        <!--8-->
+        <div class="bigimgicon" style="left: 56%;top: 55.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian dy_icon"></span>
+                <div class="bigimgicon_href dy" onclick="showlayer('dy')">
+                    <span class="bigimgicon_title">电网(储能调峰，用户侧响应)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="width: 48%;right:50%;top:36%;" id="dy">
+            <img class="layerimg" src="./images/dy.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('dy')">
+        </div>
+        <!-- 右边箭头 -->
+        <img class="imgarr" id="arr_dy" style="right: 45%;top: 50%;" src="./images/leftarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_dy">
+            <source src="./audio/dy.mp3" type="audio/mpeg">
+        </audio>
+        
+        
+        <!--9-->
+        <div class="bigimgicon" style="left: 71%;top: 51%;">
+            <a href="#" class="bigimgicon_a">
+                <span class="bigimgicon_dian zncndz_icon"></span>
+                <div class="bigimgicon_href zncndz" onclick="showlayer('ness')">
+                    <span class="bigimgicon_title">智能储能电站 NESS</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </a>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="width: 58%; height: 58%;right: 35%;top: 22%;" id="ness">
+            <img class="layerimg" src="./images/ness.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt="" onclick="closelayer('ness')">
+            <img class="videobtn" src="./images/playvideo.svg" alt="" onclick="showvideo('ness')">
+            
+        </div>
+        <!-- 右边箭头 -->
+        <img class="imgarr" id="arr_ness" style="right: 30%;top: 41%;" src="./images/leftarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_ness">
+            <source src="./audio/ness.mp3" type="audio/mpeg">
+        </audio>
+        
+        <!--10-->
+        <div class="bigimgicon" style="left: 86%;top: 55.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian xny_icon"></span>
+                <div class="bigimgicon_href xny" onclick="showlayer('xny')">
+                    <span class="bigimgicon_title">新能源(离网、并网调节)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="width: 52%;height: 55%;right:23%;top:35%;" id="xny">
+            <img class="layerimg" src="./images/xny.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('xny')">
+        </div>
+        <!-- 右边箭头 -->
+        <img class="imgarr" id="arr_xny" style="right: 18.3%;top: 54.5%;" src="./images/leftarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_xny">
+            <source src="./audio/xny.mp3" type="audio/mpeg">
+        </audio>
+        
+        <!--11-->
+        <div class="bigimgicon" style="left: 24%;top: 68.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian ckgy_icon"></span>
+                <div class="bigimgicon_href ckgy" onclick="showlayer('ckgy')">
+                    <span class="bigimgicon_title">采矿工业(油田、矿井等)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="left:31%;top:48%;" id="ckgy">
+            <img class="layerimg" src="./images/ckgy.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('ckgy')">
+            <img class="videobtn" src="./images/playvideo.svg" alt="" onclick="showvideo('ckgy')">
+        </div>
+        <!-- 左边箭头 -->
+        <img class="imgarr" id="arr_ckgy" style="left: 26%;top: 63%;" src="./images/rightarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_ckgy">
+            <source src="./audio/ckgy.mp3" type="audio/mpeg">
+        </audio>
+        
+        <!--12-->
+        <div class="bigimgicon" style="left: 64.5%;top: 68.5%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian fdc_icon"></span>
+                <div class="bigimgicon_href fdc" onclick="showlayer('fdc')">
+                    <span class="bigimgicon_title">发电厂(储能调频)</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="height: 48%;right:42%;top:40%;" id="fdc">
+            <img class="layerimg" src="./images/fdc.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt=""  onclick="closelayer('fdc')">
+        </div>
+        <!-- 右边箭头 -->
+        <img class="imgarr" id="arr_fdc" style="right: 37%;top: 72%;" src="./images/leftarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_fdc">
+            <source src="./audio/fdc.mp3" type="audio/mpeg">
+        </audio>
+        
+        <!--13-->
+        <div class="bigimgicon" style="left: 77.5%;top: 66%;">
+            <div class="bigimgicon_a">
+                <span class="bigimgicon_dian cytyq_icon"></span>
+                <div class="bigimgicon_href cytyq" onclick="showlayer('cytyq')">
+                    <span class="bigimgicon_title">柴油、天然气发电机组</span>
+                    <span class="iconjiantou"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框图片 -->
+        <div class="layerdiv" style="height: 48%;right:29%;top:36%;" id="cytyq">
+            <img class="layerimg" src="./images/cytyq.svg" alt="">
+            <img class="layerclose" src="./images/index_close.svg" alt="" onclick="closelayer('cytyq')">
+            <img class="videobtn" src="./images/playvideo.svg" alt="" onclick="showvideo('cytyq')">
+        </div>
+        <!-- 右边箭头 -->
+        <img class="imgarr" id="arr_cytyq" style="right: 24%;top: 68%;" src="./images/leftarr.svg" alt="">
+        <!-- 弹框音频 -->
+        <audio controls  loop class="audiodiv" id="audio_cytyq">
+            <source src="./audio/cytyq.mp3" type="audio/mpeg">
+        </audio>
+
+    </div>
+
+
+
+    <script>
+        function showlayer(layer_name){
+            $('.layerdiv').hide();
+            var audiodiv = document.getElementsByClassName('audiodiv');
+            for(var i=0,len=audiodiv.length;i<len;i++){
+                audiodiv[i].pause();
+                audiodiv[i].currentTime = 0;
+            }
+            var arrdiv = document.getElementsByClassName('imgarr');
+            for(var j=0,len=arrdiv.length;j<len;j++){
+                $(arrdiv[j]).hide();
+            }
+            $('#'+layer_name).show();
+            $('#arr_'+layer_name).fadeIn(4500);
+            document.getElementById('audio_'+ layer_name).play();
+        }
+
+        function closelayer(layer_name){
+            $('#'+layer_name).hide();
+            $('#arr_'+layer_name).hide();
+            $('.layerdiv').hide();
+            document.getElementById('audio_'+ layer_name).currentTime = 0;
+            document.getElementById('audio_'+ layer_name).pause();
+        }
+
+        function showvideo(layer_name){
+            closelayer(layer_name);
+            var showtit= '';
+            if(layer_name == 'yjbz'){
+                // 1
+                showtit = '应急保障(学校、重要活动)';
+            }else if(layer_name == 'jjlsyd'){
+                // 2
+                showtit = '基建临时用电(桩机、隧道等)';
+            }else if(layer_name == 'cdz'){
+                // 3
+                showtit = '充电站(光储充一体化)';
+            }else if(layer_name == 'yjby'){
+                // 4
+                showtit = '应急备用(银行、医院、学校等)';
+            }else if(layer_name == 'msbz'){
+                // 5
+                showtit = '民生保障(山区、海岛离网供电)';
+            }else if(layer_name == 'ndes'){
+                // 6
+                showtit = '柴储一体化智能微网电站';
+            }else if(layer_name == 'ydyy'){
+                // 7
+                showtit = '移动应用(带车底移动电源车)';
+            }else if(layer_name == 'dy'){
+                // 8
+                showtit = '电网(储能调峰，用户侧响应)';
+            }else if(layer_name == 'ness'){
+                // 9
+                showtit = '智能储能电站 NESS';
+            }else if(layer_name == 'xny'){
+                // 10
+                showtit = '新能源(离网、并网调节)';
+            }else if(layer_name == 'ckgy'){
+                // 11
+                showtit = '采矿工业(油田、矿井等)';
+            }else if(layer_name == 'fdc'){
+                // 12
+                showtit = '发电厂(储能调频)';
+            }else if(layer_name == 'cytyq'){
+                // 13
+                showtit = '柴油、天然气发电机组';
+            }
+
+            var audiodiv = document.getElementsByClassName('audiodiv');
+            for(var i=0,len=audiodiv.length;i<len;i++){
+                audiodiv[i].pause();
+                audiodiv[i].currentTime = 0;
+            }
+            var arrdiv = document.getElementsByClassName('imgarr');
+            for(var j=0,len=arrdiv.length;j<len;j++){
+                $(arrdiv[j]).hide();
+            }
+
+            layer.open({
+                type: 1,
+                title: showtit,
+                closeBtn: 2,
+                shadeClose: true,
+                area: ['720px', '530px'],
+                content: `
+                <video controls autoplay loop>
+                    <source src="./video/`+layer_name+`.mp4" type="video/mp4" />
+                </video>`
+            });
+
+
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
