@@ -4,15 +4,21 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>演示demo</title>
+    <title>电子沙盘---PC端(动态交互) 演示demo</title>
 </head>
 <body>
-    <!-- <div> -->
-        <video controls autoplay loop>
+    <div id="main">
+        <video controls autoplay loop class="video">
             <source src="./sand_pc.mp4" type="video/mp4" />
         </video>
-    <!-- </div> -->
+    </div>
 
-
+<style>
+    #main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 </body>
 </html>
